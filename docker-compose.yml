@@ -1,0 +1,40 @@
+version: "3.9"
+services:
+    nginx-debian:
+        build:
+            context: ./infrastructure/development/docker/nginx-debian
+            dockerfile: Dockerfile
+        ports:
+            -   "80:80"
+        volumes:
+            -   ./:/system-prototype
+        depends_on:
+            -   php-fpm-debian
+
+    php-fpm-debian:
+        build:
+            context: ./infrastructure/development/docker/php-fpm-debian
+            dockerfile: Dockerfile
+        volumes:
+            - ./:/system-prototype
+
+    php-cli-debian:
+        build:
+            context: ./infrastructure/development/docker/php-cli-debian
+            dockerfile: Dockerfile
+        volumes:
+            - ./:/system-prototype
+
+    mysql-debian:
+        image: mysql:8.0
+        environment:
+            MYSQL_USER: system-prototype
+            MYSQL_PASSWORD: system-prototype
+            MYSQL_ROOT_PASSWORD: system-prototype
+            MYSQL_DATABASE: system-prototype
+        volumes:
+            - mysql:/var/lib/mysql
+        ports:
+            - "3306:3306"
+volumes:
+    mysql:
