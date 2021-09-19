@@ -1,3 +1,11 @@
+# Общие вещи
+
+# Поднять проект со всеми зависимостями
+up: docker-up
+# Остановить проект
+down: docker-down
+# Девелоперские вещи
+
 # Собрать образы
 docker-build:
 	docker-compose build
@@ -16,6 +24,27 @@ docker-down:
 # Остановить контейнеры а также удалить тома
 docker-down-clear:
 	docker-compose down -v --remove-orphans
-# Запуск тестов
+
+# Линтеры и тесты
+
+# Запуск тестов phpunit
 phpunit:
 	docker-compose run --rm php-cli-debian composer phpunit
+# Запуск php-cs-fixer
+php-cs-fixer:
+	docker-compose run --rm php-cli-debian composer php-cs-fixer
+# Запуск php-cs-fixer и фикс ошибок
+php-cs-fixer-dry-run:
+	docker-compose run --rm php-cli-debian composer php-cs-fixer-dry-run
+# Запуск линтера
+phplint:
+	docker-compose run --rm php-cli-debian composer phplint
+# psalm статический анализатор кода
+psalm:
+	docker-compose run --rm php-cli-debian composer psalm
+# psalm статический анализатор кода
+phpstan:
+	docker-compose run --rm php-cli-debian composer phpstan
+# psalm статический анализатор кода
+infection:
+	docker-compose run --rm php-cli-debian composer infection

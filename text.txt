@@ -2,5 +2,13 @@
 
 docker-compose run --rm php-cli-debian composer require php
 docker-compose run --rm php-cli-debian composer require phpunit/phpunit --dev
+docker-compose run --rm php-cli-debian composer require friendsofphp/php-cs-fixer --dev
+docker-compose run --rm php-cli-debian composer require overtrue/phplint --dev
+docker-compose run --rm php-cli-debian composer require vimeo/psalm --dev
+docker-compose run --rm php-cli-debian composer require psalm/plugin-phpunit --dev
+docker-compose run --rm php-cli-debian composer require lctrs/psalm-psr-container-plugin --dev
+docker-compose run --rm php-cli-debian composer require roave/security-advisories:dev-latest --dev
+docker-compose run --rm php-cli-debian composer require phpstan/phpstan --dev
+docker-compose run --rm php-cli-debian composer require infection/infection --dev
 
 Конфигурационные параметры понять как правильно делать
