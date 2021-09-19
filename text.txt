@@ -1,0 +1,6 @@
+Первым делом добавим линтеры и тесты, а так же библиотеку infection, нужно по максимуму все автоматизировать
+
+docker-compose run --rm php-cli-debian composer require php
+docker-compose run --rm php-cli-debian composer require phpunit/phpunit --dev
+
+Конфигурационные параметры понять как правильно делать
