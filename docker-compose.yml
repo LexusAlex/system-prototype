@@ -15,6 +15,9 @@ services:
         build:
             context: ./infrastructure/development/docker/php-fpm-debian
             dockerfile: Dockerfile
+        environment:
+            APPLICATION_ENVIRONMENT: development
+            APPLICATION_DEBUG: 1
         volumes:
             - ./:/system-prototype
 
@@ -22,6 +25,9 @@ services:
         build:
             context: ./infrastructure/development/docker/php-cli-debian
             dockerfile: Dockerfile
+        environment:
+            APPLICATION_ENVIRONMENT: development
+            APPLICATION_DEBUG: 1
         volumes:
             - ./:/system-prototype
 
