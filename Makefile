@@ -32,6 +32,9 @@ composer-autoload:
 	docker-compose run --rm php-cli-debian composer dump-autoload
 ######################################
 # Линтеры и тесты
+
+lint: phplint php-cs-fixer
+static-analyze: phpstan psalm
 # Запуск тестов phpunit
 phpunit:
 	docker-compose run --rm php-cli-debian composer phpunit
@@ -47,6 +50,9 @@ phplint:
 # psalm статический анализатор кода
 psalm:
 	docker-compose run --rm php-cli-debian composer psalm
+# psalm статический анализатор кода
+psalm-dry-run:
+	docker-compose run --rm php-cli-debian composer psalm-dry-run
 # phpstan
 phpstan:
 	docker-compose run --rm php-cli-debian composer phpstan

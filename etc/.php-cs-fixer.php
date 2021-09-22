@@ -9,6 +9,7 @@ return
             PhpCsFixer\Finder::create()
                 ->in([
                     __DIR__ . '/../public',
+                    __DIR__ . '/../configuration',
                     __DIR__ . '/../src',
                     __DIR__ . '/../tests',
                 ])

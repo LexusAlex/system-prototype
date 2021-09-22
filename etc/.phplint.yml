@@ -8,3 +8,4 @@ exclude:
     - var
     - etc
     - infrastructure
+    - configuration
