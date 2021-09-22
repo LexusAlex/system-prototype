@@ -18,7 +18,9 @@
 
     },
     "autoload-dev": {
-
+        "psr-4": {
+            "Test\\": "tests/"
+        }
     },
     "require": {
         "php": "^8.0",
@@ -29,6 +31,7 @@
         "php-cs-fixer": "php-cs-fixer fix --allow-risky=yes --config etc/.php-cs-fixer.php --diff",
         "php-cs-fixer-dry-run": "php-cs-fixer fix --allow-risky=yes --dry-run --config etc/.php-cs-fixer.php --diff",
         "phplint": "phplint --configuration=etc/.phplint.yml -w -v",
+        "psalm-dry-run": "psalm --config=etc/psalm.xml --alter --issues=all --dry-run",
         "psalm": "psalm --config=etc/psalm.xml",
         "phpstan": "phpstan --configuration=etc/phpstan.neon",
         "infection": "infection --configuration=etc/infection.json.dist"
