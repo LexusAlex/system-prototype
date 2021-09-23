@@ -13,6 +13,8 @@ final class ContainerTest extends TestCase
 {
     public function testCreateContainer(): void
     {
-        self::assertIsObject(require __DIR__ . '/../../../configuration/main/container.php');
+        $container = require __DIR__ . '/../../../configuration/main/container.php';
+        self::assertIsObject($container);
+        self::assertEquals('DI\Container', $container::class);
     }
 }
