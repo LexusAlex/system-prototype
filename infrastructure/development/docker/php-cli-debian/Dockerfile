@@ -10,6 +10,8 @@ RUN apt-get update && docker-php-ext-install pdo_mysql \
 
 RUN apt install unzip
 
+COPY ./php/conf.d /usr/local/etc/php/conf.d
+
 ENV COMPOSER_ALLOW_SUPERUSER 1
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/bin --filename=composer --quiet \
