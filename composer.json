@@ -34,12 +34,10 @@
         "phplint": "phplint --configuration=etc/.phplint.yml -w -v",
         "psalm-dry-run": "psalm --config=etc/psalm.xml --alter --issues=all --dry-run",
         "psalm": "psalm --config=etc/psalm.xml",
-        "phpstan": "phpstan --configuration=etc/phpstan.neon",
-        "infection": "infection --configuration=etc/infection.json.dist"
+        "phpstan": "phpstan --configuration=etc/phpstan.neon"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.1",
-        "infection/infection": "^0.25.1",
         "lctrs/psalm-psr-container-plugin": "^1.3",
         "overtrue/phplint": "^3.0",
         "phpstan/phpstan": "^0.12.99",

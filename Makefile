@@ -56,7 +56,4 @@ psalm-dry-run:
 # phpstan
 phpstan:
 	docker-compose run --rm php-cli-debian composer phpstan
-# infection
-infection:
-	docker-compose run --rm php-cli-debian composer infection
 ######################################
