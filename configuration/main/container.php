@@ -5,7 +5,7 @@ declare(strict_types=1);
 use DI\ContainerBuilder;
 
 $builder = new ContainerBuilder();
-$builder->addDefinitions([]);
+$builder->addDefinitions(require __DIR__ . '/aggregator.php');
 
 try {
     return $builder->build();
