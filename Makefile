@@ -33,6 +33,9 @@ composer-autoload:
 ######################################
 # Линтеры и тесты
 
+# Общая команда для тестирования всего проекта
+test: lint static-analyze
+
 lint: phplint php-cs-fixer
 static-analyze: phpstan psalm
 # Запуск тестов phpunit
