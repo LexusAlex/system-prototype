@@ -3,6 +3,9 @@
 
 declare(strict_types=1);
 
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Tools\Console\ConsoleRunner;
+use Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper;
 use Psr\Container\ContainerInterface;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Command\Command;
@@ -19,8 +22,10 @@ $container = require __DIR__ . '/../configuration/main/container.php';
  */
 $commands = $container->get('configuration')['console']['commands'];
 
-//$entityManager = $container->get(EntityManagerInterface::class);
-//$cli->getHelperSet()->set(new EntityManagerHelper($entityManager), 'em');
+$entityManager = $container->get(EntityManagerInterface::class);
+$cli->getHelperSet()->set(new EntityManagerHelper($entityManager), 'em');
+
+ConsoleRunner::addCommands($cli);
 
 foreach ($commands as $name) {
     /** @var Command $command */
