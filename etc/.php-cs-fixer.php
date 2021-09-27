@@ -12,6 +12,7 @@ return
                     __DIR__ . '/../configuration',
                     __DIR__ . '/../src',
                     __DIR__ . '/../tests',
+                    __DIR__ . '/../bin',
                 ])
                 ->append([
                     __FILE__,

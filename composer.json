@@ -28,7 +28,8 @@
         "laminas/laminas-config-aggregator": "^1.6",
         "php-di/php-di": "^6.3",
         "psr/cache": "^2.0",
-        "symfony/cache": "^5.3"
+        "symfony/cache": "^5.3",
+        "symfony/console": "^5.3"
     },
     "scripts": {
         "phpunit": "phpunit --colors=always --configuration=etc/phpunit.xml",
@@ -37,7 +38,8 @@
         "phplint": "phplint --configuration=etc/.phplint.yml -w -v",
         "psalm-dry-run": "psalm --config=etc/psalm.xml --alter --issues=all --dry-run",
         "psalm": "psalm --config=etc/psalm.xml",
-        "phpstan": "phpstan --configuration=etc/phpstan.neon"
+        "phpstan": "phpstan --configuration=etc/phpstan.neon",
+        "cli": "php bin/index.php --ansi -v"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.1",

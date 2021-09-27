@@ -17,6 +17,7 @@
         <directory name="../src" />
         <directory name="../tests" />
         <directory name="../configuration" />
+        <directory name="../bin" />
         <ignoreFiles>
             <directory name="../vendor" />
         </ignoreFiles>
