@@ -6,7 +6,8 @@ RUN apt-get update && docker-php-ext-install pdo_mysql \
     && apt-get install git -y \
     && git clone --branch 3.0.4 --depth 1 https://github.com/xdebug/xdebug.git /usr/src/php/ext/xdebug \
     && docker-php-ext-configure xdebug --enable-xdebug-dev \
-    && docker-php-ext-install xdebug
+    && docker-php-ext-install xdebug \
+    && docker-php-ext-install bcmath
 
 RUN apt install unzip
 
