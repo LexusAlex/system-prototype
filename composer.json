@@ -29,7 +29,8 @@
         "php-di/php-di": "^6.3",
         "psr/cache": "^2.0",
         "symfony/cache": "^5.3",
-        "symfony/console": "^5.3"
+        "symfony/console": "^5.3",
+        "symfony/validator": "^5.3"
     },
     "scripts": {
         "phpunit": "phpunit --colors=always --configuration=etc/phpunit.xml",

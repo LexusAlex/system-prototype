@@ -36,15 +36,15 @@ composer-autoload:
 # Общая команда для тестирования всего проекта
 test: lint static-analyze phpunit
 
-lint: phplint php-cs-fixer
+lint: phplint php-cs-fixer-dry-run
 static-analyze: phpstan psalm
 # Запуск тестов phpunit
 phpunit:
 	docker-compose run --rm php-cli-debian composer phpunit
-# Запуск php-cs-fixer
+# Запуск php-cs-fixer с исрпавлением
 php-cs-fixer:
 	docker-compose run --rm php-cli-debian composer php-cs-fixer
-# Запуск php-cs-fixer и фикс ошибок
+# Запуск php-cs-fixer c проверкой
 php-cs-fixer-dry-run:
 	docker-compose run --rm php-cli-debian composer php-cs-fixer-dry-run
 # Запуск линтера

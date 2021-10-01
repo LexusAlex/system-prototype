@@ -7,11 +7,13 @@ return
         ->setCacheFile(__DIR__ . '/../var/cache/.php_cs')
         ->setFinder(
             PhpCsFixer\Finder::create()
+                ->exclude([
+                    __DIR__ . '/../tests/Unit/Configuration/Mock',
+                ])
                 ->in([
                     __DIR__ . '/../public',
                     __DIR__ . '/../configuration',
                     __DIR__ . '/../src',
-                    __DIR__ . '/../tests',
                     __DIR__ . '/../bin',
                 ])
                 ->append([
