@@ -5,7 +5,7 @@ services:
             context: ./infrastructure/development/docker/nginx-debian
             dockerfile: Dockerfile
         ports:
-            -   "80:80"
+            -   "8081:80"
         volumes:
             -   ./:/system-prototype
         depends_on:
