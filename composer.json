@@ -43,7 +43,7 @@
         "phplint": "phplint --configuration=etc/.phplint.yml -w -v",
         "psalm-dry-run": "psalm --config=etc/psalm.xml --alter --issues=all --dry-run",
         "psalm": "psalm --config=etc/psalm.xml",
-        "phpstan": "phpstan --configuration=etc/phpstan.neon",
+        "phpstan": "phpstan --configuration=etc/phpstan.neon --memory-limit=-1 -vvv",
         "cli": "php bin/index.php --ansi -v"
     },
     "require-dev": {
