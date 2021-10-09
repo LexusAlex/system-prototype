@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e7358f2e5cec6e42f6c9e53bf9bf9ad3",
+    "content-hash": "2fe01afb3633809aa0e0be2e5f0e4318",
     "packages": [
         {
             "name": "brick/varexporter",
@@ -1061,16 +1061,16 @@
         },
         {
             "name": "doctrine/orm",
-            "version": "2.10.0",
+            "version": "2.10.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/orm.git",
-                "reference": "07e15a00382982dc8088093669108d2174e456ea"
+                "reference": "f346379c7bf39a9f46771cfd9043e0eb2dd98793"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/orm/zipball/07e15a00382982dc8088093669108d2174e456ea",
-                "reference": "07e15a00382982dc8088093669108d2174e456ea",
+                "url": "https://api.github.com/repos/doctrine/orm/zipball/f346379c7bf39a9f46771cfd9043e0eb2dd98793",
+                "reference": "f346379c7bf39a9f46771cfd9043e0eb2dd98793",
                 "shasum": ""
             },
             "require": {
@@ -1154,9 +1154,9 @@
             ],
             "support": {
                 "issues": "https://github.com/doctrine/orm/issues",
-                "source": "https://github.com/doctrine/orm/tree/2.10.0"
+                "source": "https://github.com/doctrine/orm/tree/2.10.1"
             },
-            "time": "2021-10-03T15:14:07+00:00"
+            "time": "2021-10-05T13:04:30+00:00"
         },
         {
             "name": "doctrine/persistence",
@@ -4187,16 +4187,16 @@
         },
         {
             "name": "friendsofphp/php-cs-fixer",
-            "version": "v3.1.0",
+            "version": "v3.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfPHP/PHP-CS-Fixer.git",
-                "reference": "cf4cedb9e8991c2daa94a756176d81bf487e4c4b"
+                "reference": "13ae36a76b6e329e44ca3cafaa784ea02db9ff14"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/cf4cedb9e8991c2daa94a756176d81bf487e4c4b",
-                "reference": "cf4cedb9e8991c2daa94a756176d81bf487e4c4b",
+                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/13ae36a76b6e329e44ca3cafaa784ea02db9ff14",
+                "reference": "13ae36a76b6e329e44ca3cafaa784ea02db9ff14",
                 "shasum": ""
             },
             "require": {
@@ -4205,7 +4205,7 @@
                 "doctrine/annotations": "^1.12",
                 "ext-json": "*",
                 "ext-tokenizer": "*",
-                "php": "^7.1.3 || ^8.0",
+                "php": "^7.2 || ^8.0",
                 "php-cs-fixer/diff": "^2.0",
                 "symfony/console": "^4.4.20 || ^5.1.3",
                 "symfony/event-dispatcher": "^4.4.20 || ^5.0",
@@ -4213,13 +4213,14 @@
                 "symfony/finder": "^4.4.20 || ^5.0",
                 "symfony/options-resolver": "^4.4.20 || ^5.0",
                 "symfony/polyfill-php72": "^1.23",
+                "symfony/polyfill-php80": "^1.23",
                 "symfony/polyfill-php81": "^1.23",
                 "symfony/process": "^4.4.20 || ^5.0",
                 "symfony/stopwatch": "^4.4.20 || ^5.0"
             },
             "require-dev": {
                 "justinrainbow/json-schema": "^5.2",
-                "keradus/cli-executor": "^1.4",
+                "keradus/cli-executor": "^1.5",
                 "mikey179/vfsstream": "^1.6.8",
                 "php-coveralls/php-coveralls": "^2.4.3",
                 "php-cs-fixer/accessible-object": "^1.1",
@@ -4264,7 +4265,7 @@
             "description": "A tool to automatically fix PHP code style",
             "support": {
                 "issues": "https://github.com/FriendsOfPHP/PHP-CS-Fixer/issues",
-                "source": "https://github.com/FriendsOfPHP/PHP-CS-Fixer/tree/v3.1.0"
+                "source": "https://github.com/FriendsOfPHP/PHP-CS-Fixer/tree/v3.2.1"
             },
             "funding": [
                 {
@@ -4272,7 +4273,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-08-29T20:16:20+00:00"
+            "time": "2021-10-05T08:12:17+00:00"
         },
         {
             "name": "lctrs/psalm-psr-container-plugin",
