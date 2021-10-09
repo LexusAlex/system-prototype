@@ -27,6 +27,7 @@
         "casbin/dbal-adapter": "^2.3",
         "doctrine/orm": "^2.9",
         "laminas/laminas-config-aggregator": "^1.6",
+        "monolog/monolog": "^2.3",
         "php-di/php-di": "^6.3",
         "psr/cache": "^2.0",
         "symfony/cache": "^5.3",
