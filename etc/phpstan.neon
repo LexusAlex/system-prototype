@@ -6,3 +6,4 @@ parameters:
       - ../public
       - ../configuration
       - ../bin
+      - ../migrations

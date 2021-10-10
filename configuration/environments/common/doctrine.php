@@ -67,6 +67,7 @@ return [
             ],
             'metadata_dirs' => [
                 // __DIR__ . '/../../src/Auth/Entity',
+                __DIR__,
             ],
         ],
     ],

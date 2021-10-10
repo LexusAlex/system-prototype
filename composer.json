@@ -15,7 +15,7 @@
         }
     ],
     "autoload": {
-
+        "Migrations\\": "migrations/"
     },
     "autoload-dev": {
         "psr-4": {
@@ -25,6 +25,7 @@
     "require": {
         "php": "^8.0",
         "casbin/dbal-adapter": "^2.3",
+        "doctrine/migrations": "^3.2",
         "doctrine/orm": "^2.10",
         "laminas/laminas-config-aggregator": "^1.6",
         "monolog/monolog": "^2.3",

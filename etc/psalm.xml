@@ -18,6 +18,7 @@
         <directory name="../tests" />
         <directory name="../configuration" />
         <directory name="../bin" />
+        <directory name="../migrations" />
         <ignoreFiles>
             <directory name="../vendor" />
         </ignoreFiles>
