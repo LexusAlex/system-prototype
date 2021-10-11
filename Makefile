@@ -24,12 +24,21 @@ docker-down:
 # Остановить контейнеры а также удалить тома
 docker-down-clear:
 	docker-compose down -v --remove-orphans
+# Удалить вообще все в системе
+docker-remove-all-system:
+	docker system prune -a
 # Проверить обновы пакетов
 composer-outdated:
 	docker-compose run --rm php-cli-debian composer outdated --direct
+# Список установленных composer пакетов
+composer-list:
+	docker-compose run --rm php-cli-debian composer outdated -a
 # обновить карту классов
 composer-autoload:
 	docker-compose run --rm php-cli-debian composer dump-autoload
+# Обновить карту классов composer для прода без dev зависимостей
+composer-autoload-no-dev:
+	docker-compose run --rm php-cli-debian composer dump-autoload --no-dev
 ######################################
 # Линтеры и тесты
 
