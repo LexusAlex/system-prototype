@@ -11,6 +11,7 @@ use Psr\Container\ContainerInterface;
 use Swift_Mailer;
 use Swift_Message;
 use Test\Functional\MailerClient;
+use Twig\Environment;
 
 /**
  * @internal
@@ -26,6 +27,7 @@ final class MailerTest extends TestCase
         /** @var ContainerInterface $container */
         $container = require __DIR__ . '/../../../configuration/main/container.php';
         $mailer = $container->get(Swift_Mailer::class);
+        $twig = $container->get(Environment::class);
 
         $message = (new Swift_Message('Test Message'))
             ->setTo('a@b.ru')
@@ -34,6 +36,8 @@ final class MailerTest extends TestCase
         self::assertEquals("Test Message", $message->getSubject());
         self::assertEquals(["a@b.ru" => null], $message->getTo());
         self::assertStringContainsString("Message string", $message->getBody());
+
+        $message->setBody($twig->render('test.html.twig', ['data' => 'TestData']), 'text/html');
 
         $client = new MailerClient();
         $client->clear();

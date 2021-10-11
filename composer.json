@@ -37,7 +37,8 @@
         "symfony/config": "^5.3",
         "symfony/console": "^5.3",
         "symfony/translation": "^5.3",
-        "symfony/validator": "^5.3"
+        "symfony/validator": "^5.3",
+        "twig/twig": "^3.3"
     },
     "scripts": {
         "phpunit": "phpunit --colors=always --configuration=etc/phpunit.xml",
