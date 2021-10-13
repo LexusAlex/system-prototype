@@ -11,4 +11,254 @@ docker-compose run --rm php-cli-debian composer require roave/security-advisorie
 docker-compose run --rm php-cli-debian composer require phpstan/phpstan --dev
 docker-compose run --rm php-cli-debian composer require infection/infection --dev
 
+Строгое разделение обязанностей в коде
+
+Конфигурация - настройка всего приложения
+Работа со внешними сервисами - базы данных, логгеры и пр.
+Ядро
+
+----
+1. Конфигурация
 Конфигурационные параметры понять как правильно делать
+Конфигурация приложения – это всё, что может меняться между развёртываниями
+https://12factor.net/ru/config
+https://habr.com/ru/post/258739/
+https://docs.laminas.dev/laminas-config-aggregator/
+Необходимо следить за обновлениями пакетов и выполнять команду make composer-outdated
+----
+2. Контейнер внедрения зависимостей
+https://php-di.org/
+https://devanych.ru/development/prostoj-di-kontejner-s-podderzhkoj-avtovajringa
+
+docker-compose run --rm php-cli-debian composer require php-di/php-di
+---
+3. Агрегатор конфигов
+https://docs.laminas.dev/laminas-config-aggregator/
+
+docker-compose run --rm php-cli-debian composer require laminas/laminas-config-aggregator
+
+Структура конфига
+
+1.Объекты к которым нужен доступ из контейнера
+2. Общий массив configuration
+...
+---
+4. Переменные окружения
+
+1 уровень - глобальные /etc/enviroment перезагрузить систему
+2 уровень - текущий пользователь ~/.bashrc  export VAR_TMP=123 перелогинится
+3 уровень - сеансовые export $SESSION_VAR работает в рамках сессии
+4 уровень - конкретное запускаемое приложение PYTHON_ENV=999 python test.env работает только в конкретном приложении
+
+./setenv.sh
+
+Api ключи, пароли от бд
+
+APPLICATION_ENVIRONMENT: development
+APPLICATION_DEBUG: 1
+----
+5. Doctrine ORM
+
+docker-compose run --rm php-cli-debian composer require doctrine/orm
+
+https://deworker.pro/edu/series/interactive-site/db-and-orm
+
+---
+6. symfony/cache для работы с doctrine
+
+docker-compose run --rm php-cli-debian composer require symfony/cache
+---
+7.
+Для удобной работы с doctrine установим также и symfony/console
+docker-compose run --rm php-cli-debian composer require symfony/console
+---
+8.
+Валидация ввода
+
+https://deworker.pro/edu/series/interactive-site/validation
+
+docker-compose run --rm php-cli-debian composer require symfony/validator
+
+https://symfony.com/doc/current/reference/constraints.html#comparison-constraints
+---
+9. Мультиязычность Translator
+
+docker-compose run --rm php-cli-debian composer require symfony/translation
+docker-compose run --rm php-cli-debian composer require symfony/config
+https://deworker.pro/edu/series/interactive-site/internationalization
+
+----
+10. Casbin php - библиотека для авторизации
+
+https://casbin.org/
+https://github.com/php-casbin/php-casbin
+https://habr.com/ru/post/539778/
+https://github.com/danishigor/test-casbin
+
+docker-compose run --rm php-cli-debian composer require casbin/casbin
+docker-compose run --rm php-cli-debian composer require casbin/dbal-adapter
+----
+11. Monolog
+____
+12. Миграции и фикстуры (фейковые данные)
+
+Проверка соответствия схемы бд
+php bin/index.php --ansi -v 'orm:validate-schema'
+Mapping
+[OK] The mapping files are correct.
+Database
+[OK] The database schema is in sync with the mapping files.
+
+Генерация таблиц на основе маппинга
+docker-compose run --rm php-cli-debian composer run cli orm:schema-tool:create
+
+docker-compose run --rm php-cli-debian composer require doctrine/migrations
+
+migrations
+  migrations:current                 [current] Outputs the current version
+  migrations:dump-schema             [dump-schema] Dump the schema for your database to a migration.
+  migrations:execute                 [execute] Execute one or more migration versions up or down manually.
+  migrations:generate                [generate] Generate a blank migration class.
+  migrations:latest                  [latest] Outputs the latest version
+  migrations:list                    [list-migrations] Display a list of all available migrations and their status.
+  migrations:migrate                 [migrate] Execute a migration to a specified version or the latest available version.
+  migrations:rollup                  [rollup] Rollup migrations by deleting all tracked versions and insert the one version that exists.
+  migrations:status                  [status] View the status of a set of migrations.
+  migrations:sync-metadata-storage   [sync-metadata-storage] Ensures that the metadata storage is at the latest version.
+  migrations:up-to-date              [up-to-date] Tells you if your schema is up-to-date.
+  migrations:version
+
+
+docker-compose run --rm php-cli-debian composer require doctrine/data-fixtures --dev
+
+https://github.com/FakerPHP/Faker/
+
+Загрузка фикстур
+https://github.com/deworkerpro/demo-auction/blob/master/api/src/Console/FixturesLoadCommand.php
+----
+13. Отправка электронной почты
+
+docker-compose run --rm php-cli-debian composer require swiftmailer/swiftmailer
+docker-compose run --rm php-cli-debian composer require finesse/swiftmailer-defaults-plugin
+docker-compose run --rm php-cli-debian composer require guzzlehttp/guzzle --dev
+
+docker-compose run --rm php-cli-debian composer require twig/twig
+
+https://github.com/mailhog/MailHog
+----
+14. Шаблонизатор twig
+----
+15. Slim микрофреймворк
+
+docker-compose run --rm php-cli-debian composer require slim/slim slim/psr7
+
+Slim framework - это микрофремворк для построения эффективных приложений
+
+1. Создание экземпляра приложения Slim\App, во время создания slim регистрирует службы по умолчанию для
+каждой зависимости приложения. AppFactory::create().
+2. Далее идет автоматический поиск реализаций psr-7
+    slim/psr7,
+    nyholm/psr7 nyholm/psr7-server
+    guzzlehttp/psr7 http-interop/http-factory-guzzle
+    laminas/laminas-diactoros
+Если ничего не найдено будет ошибка Uncaught RuntimeException: Could not detect any PSR-17 ResponseFactory implementations. Please install a supported implementation in order to use `AppFactory::create()`. See https://github.com/slimphp/Slim/blob/4.x/README.md for a list of supported implementations.
+Это дает возможность использовать абсолютно любую реализацию psr-7
+
+$responseFactory = new \Slim\Psr7\Factory\ResponseFactory();
+$app = new \Slim\App($responseFactory, $container);
+
+3. Далее создается обьект CallableResolver. Нужен для автоматического подключения классов из контейнера
+new CallableResolver($container)
+
+--- пока у нас на руках
+responseFactory - \Slim\Psr7\Factory\ResponseFactory
+callableResolver - \Slim\CallableResolver
+container - \DI\Container
+---
+4. Вызов конструктора RouteCollectorProxy идет работа с ним
+В нем идет создание сборщика маршрутов RouteCollector
+Создается шаблон для группировки роутов
+
+5.Создание парсера роутов RouteParser
+
+А он в свою очередь создает FastRoute\RouteParser\Std
+
+Приложение можно создать тремя способами
+1. $app = new \Slim\App($responseFactory, $container) - Напрямую передавать все компоненты
+2. $app = AppFactory::create() - Автоматический поиск реализации psr-7
+3. $app = \Slim\Factory\AppFactory::createFromContainer($container) - Создание объекта на основе контейнера
+
+Создание маршрутов
+$app->get()
+$app->post()
+$app->put()
+$app->delete()
+$app->options()
+$app->patch()
+$app->any() - любой метод
+$app->map() - только выбранные методы
+
+Создание групп маршрутов
+
+$app->group('/test', function (\Slim\Routing\RouteCollectorProxy $group) {
+    $group->group("/test2", function (\Slim\Routing\RouteCollectorProxy $group){
+        $group->get('/fake', function (\Psr\Http\Message\ServerRequestInterface $request, \Psr\Http\Message\ResponseInterface $response, $args) {
+            $response->getBody()->write($request->getUri()->getPath());
+            return $response;
+        });
+    });
+});
+
+Добавление мидлваров
+
+$beforeMiddleware = function (Request $request, RequestHandler $handler) {
+    $response = $handler->handle($request);
+    $existingContent = (string) $response->getBody();
+
+    $response = new Response();
+    $response->getBody()->write('BEFORE' . $existingContent);
+
+    return $response;
+};
+
+$afterMiddleware = function ($request, $handler) {
+    $response = $handler->handle($request);
+    $response->getBody()->write('AFTER');
+    return $response;
+};
+
+//$app->add($beforeMiddleware);
+//$app->add($afterMiddleware);
+---------
+16. Слой Infrastructure -  для связи со внешними зависимостями каким является фреймворк
+
+
+
+Аутентификация OAuth2
+
+GET /profile - 401 Unatorized
+
+При помощи токена - отдельная таблица Json Web Token
+lcobucci/jwt
+
+https://deworker.pro/edu/series/interactive-site/oauth2-server
+
+docker-compose run --rm php-cli-debian composer require league/oauth2-server
+----
+
+Безопастность
+roave/security-advisories - пакет предоствращающий установку пакетов с уязвимостями безопастности
+----
+Composer
+
+Следить за обновлениями пакетов делать make composer-outdated
+
+на проде первый раз всегда делать composer install
+
+docker-compose run --rm php-cli-debian composer u
+Upgrades your dependencies to the latest version according to composer.json, and updates the composer.lock file.
+
+Docker version 20.10.8, build 3967b7d
+
+
+
