@@ -15,7 +15,10 @@
         }
     ],
     "autoload": {
-        "Migrations\\": "migrations/"
+        "psr-4": {
+            "Application\\": "src/",
+            "Migrations\\": "migrations/"
+        }
     },
     "autoload-dev": {
         "psr-4": {
@@ -32,6 +35,8 @@
         "monolog/monolog": "^2.3",
         "php-di/php-di": "^6.3",
         "psr/cache": "^2.0",
+        "slim/psr7": "^1.5",
+        "slim/slim": "^4.9",
         "swiftmailer/swiftmailer": "^6.2",
         "symfony/cache": "^5.3",
         "symfony/config": "^5.3",
