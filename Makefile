@@ -47,9 +47,15 @@ test: lint static-analyze phpunit
 
 lint: phplint php-cs-fixer-dry-run
 static-analyze: phpstan psalm
-# Запуск тестов phpunit
+# Запуск всех тестов phpunit
 phpunit:
 	docker-compose run --rm php-cli-debian composer phpunit
+# Запуск функциональных phpunit тестов
+phpunit-f:
+	docker-compose run --rm php-cli-debian composer phpunit-functional
+# Запуск unit phpunit тестов
+phpunit-u:
+	docker-compose run --rm php-cli-debian composer phpunit-unit
 # Запуск php-cs-fixer с исрпавлением
 php-cs-fixer:
 	docker-compose run --rm php-cli-debian composer php-cs-fixer
