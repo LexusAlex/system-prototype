@@ -24,4 +24,14 @@
         <env name="APPLICATION_ENVIRONMENT" value="test" force="true"/>
         <env name="APPLICATION_DEBUG" value="1" force="true"/>
     </php>
+    <coverage processUncoveredFiles="true">
+        <include>
+            <directory suffix=".php">../src</directory>
+            <directory suffix=".php">../configuration</directory>
+            <directory suffix=".php">../public</directory>
+        </include>
+        <exclude>
+            <directory>../tests</directory>
+        </exclude>
+    </coverage>
 </phpunit>

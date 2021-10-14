@@ -56,6 +56,9 @@ phpunit-f:
 # Запуск unit phpunit тестов
 phpunit-u:
 	docker-compose run --rm php-cli-debian composer phpunit-unit
+# Запуск unit phpunit тестов
+phpunit-coverage:
+	docker-compose run --rm php-cli-debian composer phpunit-coverage
 # Запуск php-cs-fixer с исрпавлением
 php-cs-fixer:
 	docker-compose run --rm php-cli-debian composer php-cs-fixer
