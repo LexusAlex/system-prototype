@@ -35,6 +35,7 @@
         "monolog/monolog": "^2.3",
         "php-di/php-di": "^6.3",
         "psr/cache": "^2.0",
+        "ramsey/uuid": "^4.2",
         "slim/psr7": "^1.5",
         "slim/slim": "^4.9",
         "swiftmailer/swiftmailer": "^6.2",
@@ -43,11 +44,14 @@
         "symfony/console": "^5.3",
         "symfony/translation": "^5.3",
         "symfony/validator": "^5.3",
-        "twig/twig": "^3.3"
+        "twig/twig": "^3.3",
+        "webmozart/assert": "^1.10"
     },
     "scripts": {
         "phpunit": "phpunit --colors=always --configuration=etc/phpunit.xml --testsuite all",
         "phpunit-unit": "phpunit --colors=always --configuration=etc/phpunit.xml --testsuite unit",
+        "phpunit-unit-configuration": "phpunit --colors=always --configuration=etc/phpunit.xml --testsuite unit-configuration",
+        "phpunit-unit-domain": "phpunit --colors=always --configuration=etc/phpunit.xml --testsuite unit-domain",
         "phpunit-functional": "phpunit --colors=always --configuration=etc/phpunit.xml --testsuite functional",
         "phpunit-coverage": "XDEBUG_MODE=coverage phpunit --colors=always --configuration=etc/phpunit.xml --coverage-html var/test/coverage",
         "php-cs-fixer": "php-cs-fixer fix --allow-risky=yes --config etc/.php-cs-fixer.php --diff",

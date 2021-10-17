@@ -56,6 +56,12 @@ phpunit-f:
 # Запуск unit phpunit тестов
 phpunit-u:
 	docker-compose run --rm php-cli-debian composer phpunit-unit
+# Запуск unit configuration тестов
+phpunit-u-c:
+	docker-compose run --rm php-cli-debian composer phpunit-unit-configuration
+# Запуск unit domain тестов
+phpunit-u-d:
+	docker-compose run --rm php-cli-debian composer phpunit-unit-domain
 # Запуск unit phpunit тестов
 phpunit-coverage:
 	docker-compose run --rm php-cli-debian composer phpunit-coverage
