@@ -6,7 +6,6 @@ namespace Application\Infrastructure\Http\Slim\Response;
 
 use Slim\Psr7\Factory\StreamFactory;
 use Slim\Psr7\Response;
-use Slim\Psr7\Stream;
 
 final class EmptyResponse extends Response
 {
@@ -21,5 +20,4 @@ final class EmptyResponse extends Response
             (new StreamFactory())->createStreamFromResource($resource)
         );
     }
-
 }
