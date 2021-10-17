@@ -22,6 +22,9 @@
         <testsuite name="unit-domain">
             <directory>../tests/Unit/Domain</directory>
         </testsuite>
+        <testsuite name="unit-application">
+            <directory>../tests/Unit/Application</directory>
+        </testsuite>
         <testsuite name="functional">
             <directory>../tests/Functional</directory>
         </testsuite>
