@@ -4,28 +4,22 @@ declare(strict_types=1);
 
 namespace Application\Domain\Authentication\Entityes\User\Types;
 
-use Ramsey\Uuid\Uuid;
 use Webmozart\Assert\Assert;
 
-final class Id
+final class Email
 {
     private string $value;
 
     public function __construct(string $value)
     {
         Assert::notEmpty($value);
-        Assert::uuid($value);
+        Assert::email($value);
         $this->value = mb_strtolower($value);
     }
 
-    public function __toString(): string
+    public function isEqualTo(self $other): bool
     {
-        return $this->getValue();
-    }
-
-    public static function generate(): self
-    {
-        return new self(Uuid::uuid4()->toString());
+        return $this->value === $other->value;
     }
 
     public function getValue(): string
