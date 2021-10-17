@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Test\Unit\Domain\Authentication\Entityes\User\Types;
 
-use Application\Domain\Authentication\Entityes\User\Types\Id;
+use Application\Domain\Authentication\Entities\User\Types\Id;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;

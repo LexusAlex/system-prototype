@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Application\Domain\Authentication\Services\Helpers;
 
-use Application\Domain\Authentication\Entityes\User\Types\Token;
+use Application\Domain\Authentication\Entities\User\Types\Token;
 use DateInterval;
 use DateTimeImmutable;
 use Ramsey\Uuid\Uuid;

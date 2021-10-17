@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Application\Domain\Authentication\Entityes\User\Types;
+namespace Application\Domain\Authentication\Entities\User\Types;
 
 use DateTimeImmutable;
 use DomainException;

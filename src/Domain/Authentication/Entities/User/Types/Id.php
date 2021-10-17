@@ -2,23 +2,30 @@
 
 declare(strict_types=1);
 
-namespace Application\Domain\Authentication\Entityes\User\Types;
+namespace Application\Domain\Authentication\Entities\User\Types;
 
+use Ramsey\Uuid\Uuid;
 use Webmozart\Assert\Assert;
 
-final class PasswordHash
+final class Id
 {
     private string $value;
 
     public function __construct(string $value)
     {
         Assert::notEmpty($value);
-        $this->value = $value;
+        Assert::uuid($value);
+        $this->value = mb_strtolower($value);
     }
 
     public function __toString(): string
     {
         return $this->getValue();
+    }
+
+    public static function generate(): self
+    {
+        return new self(Uuid::uuid4()->toString());
     }
 
     public function getValue(): string

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Test\Unit\Domain\Authentication\Entityes\User\Types;
 
 
-use Application\Domain\Authentication\Entityes\User\Types\Email;
+use Application\Domain\Authentication\Entities\User\Types\Email;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Application\Domain\Authentication\Services\Helpers;
 
+use Application\Domain\Authentication\Entities\User\Types\PasswordHash;
 use RuntimeException;
 use Webmozart\Assert\Assert;
 
@@ -24,6 +25,13 @@ final class PasswordGenerate
             throw new RuntimeException('Unable to generate hash.');
         }
         return $hash;
+    }
+
+    public function getPasswordHash(string $password): PasswordHash
+    {
+        $password = $this->hash($password);
+
+        return new PasswordHash($password);
     }
 
     public function validate(string $password, string $hash): bool
