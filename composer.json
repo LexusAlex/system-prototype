@@ -53,6 +53,7 @@
         "phpunit-unit-configuration": "phpunit --colors=always --configuration=etc/phpunit.xml --testsuite unit-configuration",
         "phpunit-unit-domain": "phpunit --colors=always --configuration=etc/phpunit.xml --testsuite unit-domain",
         "phpunit-unit-application": "phpunit --colors=always --configuration=etc/phpunit.xml --testsuite unit-application",
+        "phpunit-unit-infrastructure": "phpunit --colors=always --configuration=etc/phpunit.xml --testsuite unit-infrastructure",
         "phpunit-functional": "phpunit --colors=always --configuration=etc/phpunit.xml --testsuite functional",
         "phpunit-coverage": "XDEBUG_MODE=coverage phpunit --colors=always --configuration=etc/phpunit.xml --coverage-html var/test/coverage",
         "php-cs-fixer": "php-cs-fixer fix --allow-risky=yes --config etc/.php-cs-fixer.php --diff",

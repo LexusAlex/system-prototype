@@ -12,18 +12,24 @@
     <testsuites>
         <testsuite name="all">
             <directory>../tests</directory>
+            <exclude>../tests/Unit/Configuration/AuthorizationTest.php</exclude>
         </testsuite>
         <testsuite name="unit">
             <directory>../tests/Unit</directory>
+            <exclude>../tests/Unit/Configuration/AuthorizationTest.php</exclude>
         </testsuite>
         <testsuite name="unit-configuration">
             <directory>../tests/Unit/Configuration</directory>
+            <exclude>../tests/Unit/Configuration/AuthorizationTest.php</exclude>
         </testsuite>
         <testsuite name="unit-domain">
             <directory>../tests/Unit/Domain</directory>
         </testsuite>
         <testsuite name="unit-application">
             <directory>../tests/Unit/Application</directory>
+        </testsuite>
+        <testsuite name="unit-infrastructure">
+            <directory>../tests/Unit/Infrastructure</directory>
         </testsuite>
         <testsuite name="functional">
             <directory>../tests/Functional</directory>

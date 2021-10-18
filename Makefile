@@ -65,6 +65,9 @@ phpunit-u-d:
 # Запуск unit application тестов
 phpunit-u-a:
 	docker-compose run --rm php-cli-debian composer phpunit-unit-application
+# Запуск unit infrastructure тестов
+phpunit-u-i:
+	docker-compose run --rm php-cli-debian composer phpunit-unit-infrastructure
 # Запуск unit phpunit тестов
 phpunit-coverage:
 	docker-compose run --rm php-cli-debian composer phpunit-coverage
@@ -87,3 +90,16 @@ psalm-dry-run:
 phpstan:
 	docker-compose run --rm php-cli-debian composer phpstan
 ######################################
+# Doctrine
+# Валидация схемы базы данных
+doctrine-validate:
+	docker-compose run --rm php-cli-debian composer run cli orm:validate-schema
+# Создание миграций
+doctrine-migrations-diff:
+	docker-compose run --rm -u 1000:1000 php-cli-debian composer run cli migrations:diff
+# Откат последней миграции
+doctrine-migrations-down:
+	docker-compose run --rm -u 1000:1000 php-cli-debian composer run cli migrations:migrate first
+# Применение миграций
+doctrine-migrations:
+	docker-compose run --rm php-cli-debian composer cli migrations:migrate -- --no-interaction
