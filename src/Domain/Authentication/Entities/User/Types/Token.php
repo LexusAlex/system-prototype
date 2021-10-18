@@ -5,14 +5,25 @@ declare(strict_types=1);
 namespace Application\Domain\Authentication\Entities\User\Types;
 
 use DateTimeImmutable;
+use Doctrine\ORM\Mapping as ORM;
 use DomainException;
 use Webmozart\Assert\Assert;
 
+/**
+ * @ORM\Embeddable
+ */
 final class Token
 {
-    private string $value;
-
-    private DateTimeImmutable $expires;
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $value;
+    /**
+     * @var DateTimeImmutable
+     * @ORM\Column(type="datetime_immutable", nullable=true)
+     */
+    private $expires;
 
     public function __construct(string $value, DateTimeImmutable $expires)
     {
@@ -20,6 +31,11 @@ final class Token
         Assert::uuid($value);
         $this->value = mb_strtolower($value);
         $this->expires = $expires;
+    }
+
+    public function __toString(): string
+    {
+        return $this->getValue();
     }
 
     public function validate(string $value, DateTimeImmutable $date): void
