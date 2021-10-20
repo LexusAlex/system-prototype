@@ -12,6 +12,8 @@ use Application\Domain\Authentication\Services\Helpers\TokenGenerate;
 use Application\Infrastructure\Database\Doctrine\Helpers\Save;
 use Application\Infrastructure\Database\Doctrine\Repositories\Authentication\UserRepository;
 use DateTimeImmutable;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use DomainException;
 
 final class Handler
@@ -34,8 +36,8 @@ final class Handler
     }
 
     /**
-     * @throws \Doctrine\ORM\NonUniqueResultException
-     * @throws \Doctrine\ORM\NoResultException
+     * @throws NonUniqueResultException
+     * @throws NoResultException
      */
     public function handle(Command $command): void
     {
@@ -43,7 +45,6 @@ final class Handler
 
         $email = new Email($command->email);
 
-        // Подумать как валидировать логику доменной модели
         if ($this->userRepository->hasByEmail($email)) {
             throw new DomainException('User already exists.');
         }

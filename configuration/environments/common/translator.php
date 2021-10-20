@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Middlewares\ContentLanguage;
 use Psr\Container\ContainerInterface;
 use Symfony\Component\Translation\Loader\PhpFileLoader;
 use Symfony\Component\Translation\Loader\XliffFileLoader;
@@ -29,6 +30,16 @@ return [
         return $translator;
     },
 
+    ContentLanguage::class => static function (ContainerInterface $container): ContentLanguage {
+        /**
+         * @psalm-suppress MixedArrayAccess
+         * @var array{allowed:string[]} $config
+         */
+        $config = $container->get('configuration')['locales'];
+
+        return new ContentLanguage($config['allowed']);
+    },
+
     'configuration' => [
         'translator' => [
             'lang' => 'en',
@@ -46,9 +57,9 @@ return [
                     'exceptions',
                 ],
             ],
-            'locales' => [
-                'allowed' => ['en', 'ru'],
-            ],
+        ],
+        'locales' => [
+            'allowed' => ['en', 'ru'],
         ],
     ],
 ];
