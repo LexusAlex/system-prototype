@@ -61,5 +61,5 @@ return
             'final_public_method_for_abstract_class' => true,
             'self_static_accessor' => true,
 
-            'static_lambda' => true,
+            'static_lambda' => false,
         ]);

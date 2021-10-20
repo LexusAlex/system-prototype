@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Test\Unit\Application\Authentication\Command;
 
-use Application\Domain\Authentication\Entityes\User\Types\Email;
-use Application\Domain\Authentication\Entityes\User\Types\Id;
-use Application\Domain\Authentication\Entityes\User\Types\PasswordHash;
-use Application\Domain\Authentication\Entityes\User\Types\Token;
-use Application\Domain\Authentication\Entityes\User\User;
+use Application\Domain\Authentication\Entities\User\Types\Email;
+use Application\Domain\Authentication\Entities\User\Types\Id;
+use Application\Domain\Authentication\Entities\User\Types\PasswordHash;
+use Application\Domain\Authentication\Entities\User\Types\Token;
+use Application\Domain\Authentication\Entities\User\User;
 use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;

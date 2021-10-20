@@ -5,10 +5,8 @@ declare(strict_types=1);
 namespace Test\Functional;
 
 use PHPUnit\Framework\TestCase;
-use PHPUnit\Util\Json;
 use Psr\Container\ContainerInterface;
 use Slim\Psr7\Factory\ServerRequestFactory;
-use function DI\string;
 
 /**
  * @internal

@@ -20,12 +20,12 @@ return [
          * @psalm-suppress MixedArrayAccess
          * @var array{token_ttl:string} $config
          */
-        $config = $container->get('config')['auth'];
+        $config = $container->get('configuration')['auth'];
 
         return new TokenGenerate(new DateInterval($config['token_ttl']));
     },
 
-    'config' => [
+    'configuration' => [
         'auth' => [
             'token_ttl' => 'PT4H',
         ],

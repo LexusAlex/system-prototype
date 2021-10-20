@@ -103,3 +103,6 @@ doctrine-migrations-down:
 # Применение миграций
 doctrine-migrations:
 	docker-compose run --rm php-cli-debian composer cli migrations:migrate -- --no-interaction
+# Загрузка фикстур
+load-fixtures:
+	docker-compose run --rm php-cli-debian composer cli fixtures:load

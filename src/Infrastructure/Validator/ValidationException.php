@@ -10,10 +10,10 @@ use Throwable;
 
 final class ValidationException extends LogicException
 {
-    /* @phpstan-ignore-next-line */
+    /** @phpstan-ignore-next-line */
     private ConstraintViolationListInterface $violations;
 
-    /* @phpstan-ignore-next-line */
+    /** @phpstan-ignore-next-line */
     public function __construct(
         ConstraintViolationListInterface $violations,
         string $message = 'Invalid input.',
@@ -23,7 +23,8 @@ final class ValidationException extends LogicException
         parent::__construct($message, $code, $previous);
         $this->violations = $violations;
     }
-    /* @phpstan-ignore-next-line */
+
+    /** @phpstan-ignore-next-line */
     public function getViolations(): ConstraintViolationListInterface
     {
         return $this->violations;
