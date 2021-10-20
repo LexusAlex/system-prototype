@@ -50,7 +50,6 @@ final class ValidatorTest extends TestCase
             self::fail('Expected exception is not thrown');
         } catch (Exception $exception) {
             self::assertInstanceOf(ValidationException::class, $exception);
-            /* @phpstan-ignore-next-line */
             self::assertEquals($violations, $exception->getViolations());
         }
     }

@@ -7,3 +7,15 @@ parameters:
       - ../configuration
       - ../bin
       - ../migrations
+    ignoreErrors:
+        - '#Method [a-zA-Z0-9\\_]+::filterStrings\(\) return type has no value type specified in iterable type array.#'
+        - '#Method [a-zA-Z0-9\\_]+::filterStrings\(\) has parameter \$items with no value type specified in iterable type array.#'
+        - '#Method [a-zA-Z0-9\\_]+::filterFiles\(\) has parameter \$items with no value type specified in iterable type array.#'
+        - '#Method [a-zA-Z0-9\\_]+::filterFiles\(\) return type has no value type specified in iterable type array.#'
+        - '#PHPDoc tag @var for variable \$item has no value type specified in iterable type array.#'
+        - '#Method [a-zA-Z0-9\\_]+::errorsArray\(\) has parameter \$violations with no value type specified in iterable type [a-zA-Z0-9\\_]+.#'
+        - '#Method [a-zA-Z0-9\\_]+::errorsArray\(\) return type has no value type specified in iterable type array.#'
+        - '#Property [a-zA-Z0-9\\_]+::\$violations type has no value type specified in iterable type [a-zA-Z0-9\\_]+.#'
+        - '#Method [a-zA-Z0-9\\_]+::__construct\(\) has parameter \$violations with no value type specified in iterable type [a-zA-Z0-9\\_]+.#'
+        - '#Method [a-zA-Z0-9\\_]+::getViolations\(\) return type has no value type specified in iterable type [a-zA-Z0-9\\_]+#'
+        - '#Call to an undefined method Exception::getViolations\(\).#'

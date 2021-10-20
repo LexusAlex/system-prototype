@@ -26,7 +26,6 @@ final class ValidationExceptionHandler implements MiddlewareInterface
         }
     }
 
-    /** @phpstan-ignore-next-line */
     private static function errorsArray(ConstraintViolationListInterface $violations): array
     {
         $errors = [];
