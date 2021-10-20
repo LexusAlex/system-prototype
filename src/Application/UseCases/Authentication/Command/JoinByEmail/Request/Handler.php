@@ -43,6 +43,7 @@ final class Handler
 
         $email = new Email($command->email);
 
+        // Подумать как валидировать логику доменной модели
         if ($this->userRepository->hasByEmail($email)) {
             throw new DomainException('User already exists.');
         }
@@ -52,7 +53,7 @@ final class Handler
             $dateCreated,
             $email,
             $this->passwordGenerate->getPasswordHash($command->password),
-            $token = $this->tokenGenerate->generate($dateCreated)
+            $this->tokenGenerate->generate($dateCreated)
         );
 
         $this->userRepository->add($user);

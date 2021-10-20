@@ -42,8 +42,6 @@ final class RequestActionTest extends TestCase
         /** @var User $user */
         $user = $repository->findOneBy(['email' => 'test@app.test']);
 
-        self::assertNotNull($user);
-
         $em->remove($user);
         $em->flush();
 

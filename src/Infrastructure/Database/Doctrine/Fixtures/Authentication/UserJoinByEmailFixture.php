@@ -26,7 +26,7 @@ final class UserJoinByEmailFixture extends AbstractFixture
             $date = new DateTimeImmutable('-30 days'),
             new Email('my-email.test.ua-dev@app.test-dev.up'),
             new PasswordHash(self::PASSWORD_HASH),
-            new Token($value = Uuid::uuid4()->toString(), $date->modify('+1 day'))
+            new Token(Uuid::uuid4()->toString(), $date->modify('+1 day'))
         );
 
         $user2 = User::joinByEmailRequest(
@@ -34,7 +34,7 @@ final class UserJoinByEmailFixture extends AbstractFixture
             $date = new DateTimeImmutable(),
             new Email('my-email.test.ua-dev2@app.test-dev.up'),
             new PasswordHash(self::PASSWORD_HASH),
-            new Token($value = Uuid::uuid4()->toString(), $date->modify('+4 day'))
+            new Token(Uuid::uuid4()->toString(), $date->modify('+4 day'))
         );
 
         $manager->persist($user);
