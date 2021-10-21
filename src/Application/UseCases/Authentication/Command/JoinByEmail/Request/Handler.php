@@ -11,6 +11,7 @@ use Application\Domain\Authentication\Services\Helpers\PasswordGenerate;
 use Application\Domain\Authentication\Services\Helpers\TokenGenerate;
 use Application\Infrastructure\Database\Doctrine\Helpers\Save;
 use Application\Infrastructure\Database\Doctrine\Repositories\Authentication\UserRepository;
+use Application\Infrastructure\Mailer\Authentication\Senders\JoinConfirmationSender;
 use DateTimeImmutable;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
@@ -22,17 +23,20 @@ final class Handler
     private TokenGenerate $tokenGenerate;
     private UserRepository $userRepository;
     private Save $save;
+    private JoinConfirmationSender $joinConfirmationSender;
 
     public function __construct(
         PasswordGenerate $passwordGenerate,
         TokenGenerate $tokenGenerate,
         UserRepository $userRepository,
-        Save $save
+        Save $save,
+        JoinConfirmationSender $joinConfirmationSender
     ) {
         $this->passwordGenerate = $passwordGenerate;
         $this->tokenGenerate = $tokenGenerate;
         $this->userRepository = $userRepository;
         $this->save = $save;
+        $this->joinConfirmationSender = $joinConfirmationSender;
     }
 
     /**
@@ -54,11 +58,13 @@ final class Handler
             $dateCreated,
             $email,
             $this->passwordGenerate->getPasswordHash($command->password),
-            $this->tokenGenerate->generate($dateCreated)
+            $token = $this->tokenGenerate->generate($dateCreated)
         );
 
         $this->userRepository->add($user);
 
         $this->save->save();
+
+        $this->joinConfirmationSender->send($email, $token);
     }
 }

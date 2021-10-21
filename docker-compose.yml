@@ -31,6 +31,7 @@ services:
             MAILER_PASSWORD: test
             MAILER_ENCRYPTION: tcp
             MAILER_FROM_EMAIL: test@test.test
+            FRONTEND_URL: http://127.0.0.1
         volumes:
             - ./:/system-prototype
 
@@ -54,6 +55,7 @@ services:
             MAILER_PASSWORD: test
             MAILER_ENCRYPTION: tcp
             MAILER_FROM_EMAIL: test@test.test
+            FRONTEND_URL: http://127.0.0.1
         volumes:
             - ./:/system-prototype
 
