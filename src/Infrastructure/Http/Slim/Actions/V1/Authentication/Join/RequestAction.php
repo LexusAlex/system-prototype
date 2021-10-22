@@ -35,7 +35,7 @@ final class RequestAction implements RequestHandlerInterface
          */
         $data = $request->getParsedBody();
 
-        // Начало
+        // Команда VO
         $command = new Command();
         $command->email = $data['email'] ?? '';
         $command->password = $data['password'] ?? '';
@@ -43,7 +43,6 @@ final class RequestAction implements RequestHandlerInterface
         $this->validator->validate($command);
 
         $this->handler->handle($command);
-        // Конец
 
         return new EmptyResponse(201);
     }

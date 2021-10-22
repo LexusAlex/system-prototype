@@ -11,6 +11,8 @@ use Slim\Handlers\ErrorHandler;
  */
 final class LogErrorHandler extends ErrorHandler
 {
+    protected $contentType = 'application/json';
+
     protected function writeToErrorLog(): void
     {
         $this->logger->error($this->exception->getMessage(), [

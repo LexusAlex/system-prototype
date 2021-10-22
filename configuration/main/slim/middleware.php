@@ -11,13 +11,13 @@ use Slim\App;
 use Slim\Middleware\ErrorMiddleware;
 
 return static function (App $application): void {
-    $application->add(DomainExceptionHandler::class);
-    $application->add(ValidationExceptionHandler::class);
-    $application->add(ClearEmptyInput::class);
-    $application->add(TranslatorLocale::class);
-    $application->add(ContentLanguage::class);
-    $application->addBodyParsingMiddleware();
-    $application->add(ErrorMiddleware::class);
-    //$application->addErrorMiddleware((bool)getenv('APPLICATION_DEBUG'), getenv('APPLICATION_ENVIRONMENT') !== 'test', true);
-    // Указывать снизу вверх от action
+    // Вызов Action
+    $application->add(DomainExceptionHandler::class); // Доменные исключения
+    $application->add(ValidationExceptionHandler::class); // Валидация полей, для которых указаны правила валидации
+    $application->add(ClearEmptyInput::class); // Автоматический трим всех входящих полей
+    $application->add(TranslatorLocale::class); // Автоматический переключатель языков
+    $application->add(ContentLanguage::class); // Парсинг заголовка Accept-Language
+    $application->addBodyParsingMiddleware(); // Парсинг входящих параметров в массив
+    $application->add(ErrorMiddleware::class); // Обработчик ошибок
+    // Application index.php
 };

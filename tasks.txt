@@ -14,3 +14,5 @@
 
 3. Интерфейс для проставления прав доступа
 
+4. Подключить сервис sentry для уведомления об ошибках https://deworker.pro/edu/series/interactive-site/logger
+
