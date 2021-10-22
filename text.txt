@@ -229,11 +229,161 @@ $afterMiddleware = function ($request, $handler) {
 
 //$app->add($beforeMiddleware);
 //$app->add($afterMiddleware);
+
+
+
+
 ---------
-16. Слой Infrastructure -  для связи со внешними зависимостями каким является фреймворк
+16. Слой Infrastructure -  для связи со внешними зависимостями каким является фреймворк, база данных, различные валидаторы
+
+Http
+Http/Slim
+Http/Slim/Actions
+
+Адреса !!! Так не делаем
+
+Authentication
+/authentication/join
+/authentication/join/confirm
+
+Profile
+/profile
+/profile/phones
+
+Blog
+/blog/posts
+/blog/posts/25
+/blog/posts/25/comments
+
+Comments
+/comments?type=post&id=25
+
+Все контроллеры помещаем не внутри модулей а в Http/Slim/Actions
+Такой подход дает нам независимость
+
+Версионирование адресов api по номерам версий v1
+
+/v1/authentication/join
+
+Здесь будут располагаться репозитории
+
+doctrine
+
+make doctrine-validate проверять валидацию схемы
+
+------
+17. Слой Application - все что связано с приложением
+
+UseCases - как мф хотим использовать приложение
+
+src/Application/UseCases/Authentication/Command/JoinByEmail/Request/Command.php - DTO - значения пришедшие из контроллера
+src/Application/UseCases/Authentication/Command/JoinByEmail/Request/Handler.php - Сервис для обработки команды
+
+Задача сервиса - получить команду, создать объект пользователя, присвоить ему роль, добавить в бд, отправить письмо с
+подтверждением регистрации
+
+https://deworker.pro/edu/series/interactive-site/user-registration
+
+CQS
+Command - что-то модифицируют
+Query - что-то считывают
+
+Пришло время написать Обработчик для команды
+------
+18 .Слой Domain - только чистый код, индивидуально существующие элементы домена.
+Начнем с сущностей
+
+Только Чистый код!!!
+
+Определим сущность User - это объект от которого должны делаться все действия на сайте. По сути это модель которая
+работает по бизнес требованиям.
+
+Переходим к объектам значениям
+У User у нас есть id для его генерации удобно пользоваться библиотекой uuid
+docker-compose run --rm php-cli-debian composer require ramsey/uuid
+
+ID работает с идентификатором пользователя
+Требования
+1. Uuid
+2. Не пустой
+3. Должен быть в нижнем регистре
+
+Email пользователя
+1. Корректный email
+2. Не пустой
+3. Нижний регистр
+
+Token - токен для подтверждения регистрации
+Принимает uuid и дату истечения
+! Важный момент - дату сохранять только в UTC, потом будет легче ее конвертировать
+
+1. Не обязательный элемент
+2. Uuid
+3. Не пустой
+
+Так же необходим сервис для генерации токенов
+Например
+src/Domain/Authentication/Services/Helpers/TokenGenerate.php
+
+https://ikfi.ru/article/rabota-s-dateinterval-v-php
+
+$passwordHash хеш пароля
+1. Не пустой
+
+Для генерации и проверки пароля сделаем отдельный сервис
+tests/Unit/Domain/Authentication/Services/Helpers/PasswordGenerateTest.php
+https://habr.com/ru/post/224623/
+
+Чтобы вручную не проверять и не бросать исключения установим библиотеку
+
+docker-compose run --rm php-cli-debian composer require webmozart/assert
+
+-------
+Запрос на регистрацию пользователя. Расписать весь процесс
+
+1. Запрос попадает в экшен по адресу /v1/authentication/join
+   Здесь может быть ответ сервера с ошибкой
+   - 404 Not Found
+   - 405 Method not allowed.
+
+   Запрос прошел фильтр то.
+   Если найдено, то запрос продолжается дальше и будет создан обьет request и будет вызван метод handle нашего экшена
+
+2. Парсинг параметров запроса, благодаря addBodyParsingMiddleware();
+   Метод $request->getParsedBody(); сохраняет параметры запроса в массив, в данном случае это логин и пароль
+3. Присвоение результатов запроса и их валидация
+
+Возможные ответы
+   Ошибка валидации 422 (Unprocessable Entity)
+   Метод не поддерживается 405 (Method Not Allowed)
+   Успешно 201 (Created)
+   Response code: 409 (Conflict) Доменная ошибка
 
 
+   docker-compose run --rm php-cli-debian composer update doctrine/orm
+   docker-compose run --rm php-cli-debian composer update guzzlehttp/guzzle
 
+
+Валидация данных
+
+Валидация - это процесс проверки данных на соответствие неким, заранее известным правилам (формату, требованиям).
+Первичная проверка - Например проверка совпадение паролей
+Данные конкретной сущности - Например поле email - это корректный email адрес
+Данные доменной модели - например, не допускается что бы две разных сущности "User" имели одинаковый логин или email.
+Данные на выходе из Модели - данные отправляемые клиентам, либо данные отдаваемые другим слоям системы.
+
+http://1.bp.blogspot.com/_nCRybj7J3xA/TIbe6aNfD_I/AAAAAAAAADg/zpg4KpUf-PY/s1600/Data.png
+
+Внешний мир (html форма, rest клиент, сервисы)
+
+
+Контроллер
+src/Infrastructure/Http/Slim/Actions/V1/Authentication/Join/RequestAction.php
+
+https://deworker.pro/edu/series/interactive-site/controllers
+
+
+------
 Аутентификация OAuth2
 
 GET /profile - 401 Unatorized
@@ -259,6 +409,15 @@ docker-compose run --rm php-cli-debian composer u
 Upgrades your dependencies to the latest version according to composer.json, and updates the composer.lock file.
 
 Docker version 20.10.8, build 3967b7d
+
+
+Добавить хелпер для себя версии ПО через api github
+
+https://api.github.com/repos/twbs/bootstrap/releases?per_page=100
+
+
+
+Тестирование сервиса под нагрузкой с помощью soap api
 
 
 
