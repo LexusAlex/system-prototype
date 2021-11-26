@@ -32,6 +32,9 @@ docker-remove-all-system:
 # Установка зависимостей composer
 composer-install:
 	docker-compose run --rm php-cli-debian composer install
+# Обновление зависимостей
+composer-update:
+	docker-compose run --rm php-cli-debian composer update
 # Проверить обновы пакетов
 composer-outdated:
 	docker-compose run --rm php-cli-debian composer outdated --direct
