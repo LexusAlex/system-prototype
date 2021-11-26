@@ -1,5 +1,7 @@
 ######################################
 # Общие вещи
+# Поднять проект с нуля, только что клонированный
+init: docker-build docker-up composer-install doctrine-migrations load-fixtures
 # Поднять проект со всеми зависимостями
 up: docker-up
 # Остановить проект
@@ -27,6 +29,9 @@ docker-down-clear:
 # Удалить вообще все в системе
 docker-remove-all-system:
 	docker system prune -a
+# Установка зависимостей composer
+composer-install:
+	docker-compose run --rm php-cli-debian composer install
 # Проверить обновы пакетов
 composer-outdated:
 	docker-compose run --rm php-cli-debian composer outdated --direct
