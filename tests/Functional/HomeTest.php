@@ -28,8 +28,8 @@ final class HomeTest extends TestCase
         $response = $application->handle($request);
 
         self::assertEquals(200, $response->getStatusCode());
-        self::assertEquals('application/json', $response->getHeaderLine('Content-Type'));
-        self::assertEquals('{}', (string)$response->getBody());
+        self::assertEquals('text/html', $response->getHeaderLine('Content-Type'));
+        //self::assertEquals('{}', (string)$response->getBody());
     }
 
     public function testMethodHomePage(): void
