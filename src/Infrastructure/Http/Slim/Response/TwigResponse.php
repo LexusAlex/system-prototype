@@ -13,7 +13,7 @@ final class TwigResponse extends Response
 {
     private Environment $environment;
 
-    public function __construct(string $template, Environment $environment , $vars = [])
+    public function __construct(string $template, Environment $environment, $vars = [])
     {
         $this->environment = $environment;
         parent::__construct(

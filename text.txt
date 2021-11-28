@@ -11,6 +11,8 @@ docker-compose run --rm php-cli-debian composer require roave/security-advisorie
 docker-compose run --rm php-cli-debian composer require phpstan/phpstan --dev
 docker-compose run --rm php-cli-debian composer require infection/infection --dev
 
+docker-compose run --rm php-cli-debian composer require slim/twig-view
+
 Строгое разделение обязанностей в коде
 
 Конфигурация - настройка всего приложения
@@ -418,6 +420,8 @@ https://api.github.com/repos/twbs/bootstrap/releases?per_page=100
 
 
 Тестирование сервиса под нагрузкой с помощью soap api
+
+https://ruden.github.io/twig-docs-ru/intro.html
 
 
 

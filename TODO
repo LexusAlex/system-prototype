@@ -1,3 +1,5 @@
-Подключить библиотеку для обработки html https://github.com/slimphp/PHP-View
+Подключить библиотеку для обработки html https://github.com/slimphp/PHP-View , а лучше переделать компонент
 Frontend делать отдельно с помощью удобного инструмента для сборки фронтенда https://github.com/LexusAlex/starter-bootstrap
 сюда загружаем строго собранный фронт!!!
+
+Принял решение делать фронтенд здесь
