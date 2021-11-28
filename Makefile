@@ -114,3 +114,14 @@ doctrine-migrations:
 # Загрузка фикстур
 load-fixtures:
 	docker-compose run --rm php-cli-debian composer cli fixtures:load
+
+#######################################
+# Фронтенд
+frontend-up:
+	npm run dev
+frontend-build:
+	npm run build
+frontend-install:
+	npm install
+frontend-outdated:
+	npm outdated
